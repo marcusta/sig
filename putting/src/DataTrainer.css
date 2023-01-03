@@ -1,0 +1,58 @@
+
+@media only screen and (min-width: 410px) and (orientation: portrait) {
+  .dataLabel {
+    font-size: 0.7rem;
+  }
+
+  .data {
+    font-size: 2.3rem;
+  }
+
+}
+
+@media (min-width: 700px) {
+  .dataLabel {
+    font-size: 1.5rem;
+  }
+
+  .data {
+    font-size: 5rem;
+  }
+}
+
+.dataTileSet {
+    /* use css grid to position the tiles */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.dataTile {
+    background-color: #333;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.dataLabel {
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: #ddd;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 45px;
+}
+
+.data {
+  font-size: 5rem;
+  font-weight: normal;
+  color: #ddd;
+  text-align: center;
+  padding: 0px;
+  margin: 20px;
+}
