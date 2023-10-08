@@ -1,0 +1,10 @@
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net35/SIGLogo.csproj.AssemblyReference.cache
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net35/PluginInfo.cs
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net35/SIGLogo.GeneratedMSBuildEditorConfig.editorconfig
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net35/SIGLogo.AssemblyInfoInputs.cache
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net35/SIGLogo.AssemblyInfo.cs
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net35/SIGLogo.csproj.CoreCompileInputs.cache
+/Users/marcust/dev/sig/gspro/SIGLogo/bin/Debug/net35/SIGLogo.dll
+/Users/marcust/dev/sig/gspro/SIGLogo/bin/Debug/net35/SIGLogo.pdb
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net35/SIGLogo.dll
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net35/SIGLogo.pdb

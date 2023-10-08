@@ -33,11 +33,6 @@ export function calculateStrokeLengthForDistance(distance: number, stimp: number
 
 export function puttsAs(distance: number, stimp: number, elevationInCentimetres = 0) {
   if (elevationInCentimetres === 0) { return distance; }
-  // 1 fot / 1 tum höjdskillnad
-  // 1 fot = 0.3048 m, 1 tum = 0.0254 m => 0.3048 / 0.0254 = 12
-
-  // 15
-
   const foot = 0.3048;
   const inch = 0.0254;
   const coefficient = (foot / inch) / 1.75;
@@ -47,14 +42,6 @@ export function puttsAs(distance: number, stimp: number, elevationInCentimetres 
 }
 
 export function calculateStrokeLengthForBallspeed(ballspeed: number) {
-  // strokeLength = 3,9726 * ballspeed + 2,8874
-
-  // ballspeed = 0,2469 * strokelength - 0,8026
-  // ballspeed + 0,8026 = 0,2469 * strokelength
-  // (ballspeed + 0,8026) / 0,2469 = strokelength
-  // return oneDecimal((ballspeed + 0.8026) / 0.2469);
-  //3,9726x + 2,8874
-  // 3,935x + 1,2393
   if (ballspeed < 4) {
     return oneDecimal(3.4547 * ballspeed + 4.6236);
   } else if (ballspeed < 6) {
@@ -79,6 +66,9 @@ export function getBlastMotionClubSpeed(ballspeed: number) {
 }
 
 export function getBallSpeedForDistance(distance: number, stimp: number) {
+  if (stimp < 10 || stimp > 11) {
+    return getBallSpeedForDistanceBasedOnTable(distance, stimp);
+  }
   let interval = "0-4";
   if (distance < 4) {
     interval = "0-4";

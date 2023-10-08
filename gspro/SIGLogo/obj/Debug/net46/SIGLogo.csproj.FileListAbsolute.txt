@@ -1,0 +1,13 @@
+/Users/marcust/dev/sig/gspro/SIGLogo/bin/Debug/net46/SIGLogo.dll
+/Users/marcust/dev/sig/gspro/SIGLogo/bin/Debug/net46/SIGLogo.pdb
+/Users/marcust/dev/sig/gspro/SIGLogo/bin/Debug/net46/Assembly-CSharp.dll
+/Users/marcust/dev/sig/gspro/SIGLogo/bin/Debug/net46/UnityEngine.CoreModule.dll
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net46/SIGLogo.csproj.AssemblyReference.cache
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net46/PluginInfo.cs
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net46/SIGLogo.GeneratedMSBuildEditorConfig.editorconfig
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net46/SIGLogo.AssemblyInfoInputs.cache
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net46/SIGLogo.AssemblyInfo.cs
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net46/SIGLogo.csproj.CoreCompileInputs.cache
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net46/SIGLogo.csproj.CopyComplete
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net46/SIGLogo.dll
+/Users/marcust/dev/sig/gspro/SIGLogo/obj/Debug/net46/SIGLogo.pdb

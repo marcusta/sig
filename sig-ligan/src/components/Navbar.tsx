@@ -7,8 +7,8 @@ export function NavBar() {
       style={{ backgroundColor: "rgb(0, 107, 164)" }}
     >
       <div className="navbar-brand">
-        <a className="navbar-item" href="/players">
-          <img src="/sig_logo_small.png" width="40" height="40" />
+        <a className="navbar-item" href="/ligan">
+          <img src="./sig_logo_small.png" width="40" height="40" />
           <span
             style={{
               marginLeft: "15px",

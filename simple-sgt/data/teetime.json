@@ -1,0 +1,1171 @@
+{
+  "years": {
+    "2022": {
+      "players": [
+        {
+          "name": "Göran Silfver",
+          "nick": "Göran"
+        },
+        {
+          "name": "Johan Asklund",
+          "nick": "Johan A"
+        },
+        {
+          "name": "Ove Arbsjö",
+          "nick": "Ove"
+        },
+        {
+          "name": "Carl Crane",
+          "nick": "Calle"
+        },
+        {
+          "name": "Ola Rådeström",
+          "nick": "Ola"
+        },
+        {
+          "name": "Krister Göransson",
+          "nick": "Krister"
+        },
+        {
+          "name": "Johan Jigerström",
+          "nick": "Johan J"
+        },
+        {
+          "name": "Håkan Lindgren",
+          "nick": "Håkan"
+        },
+        {
+          "name": "Mårten Lundberg",
+          "nick": "Mårten"
+        },
+        {
+          "name": "Jonny Stoltz",
+          "nick": "Jonny"
+        },
+        {
+          "name": "Peter Hagström",
+          "nick": "Peter H"
+        },
+        {
+          "name": "Marcus Andersson",
+          "nick": "Marcus"
+        }
+      ],
+      "events": [
+        {
+          "id": "1",
+          "name": "Uppstart, första 9",
+          "note": "",
+          "date": "2022-04-23",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Johan A",
+              "result": 17
+            },
+            {
+              "nick": "Ove",
+              "result": 17
+            },
+            {
+              "nick": "Calle",
+              "result": 14
+            },
+            {
+              "nick": "Ola",
+              "result": 15
+            },
+            {
+              "nick": "Krister",
+              "result": 16
+            },
+            {
+              "nick": "Mårten",
+              "result": 18
+            },
+            {
+              "nick": "Jonny",
+              "result": 18
+            },
+            {
+              "nick": "Marcus",
+              "result": 16
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Uppstart, sista 9",
+          "note": "",
+          "date": "2022-04-23",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Johan A",
+              "result": 13
+            },
+            {
+              "nick": "Ove",
+              "result": 13
+            },
+            {
+              "nick": "Calle",
+              "result": 14
+            },
+            {
+              "nick": "Ola",
+              "result": 11
+            },
+            {
+              "nick": "Krister",
+              "result": 11
+            },
+            {
+              "nick": "Mårten",
+              "result": 15
+            },
+            {
+              "nick": "Jonny",
+              "result": 15
+            },
+            {
+              "nick": "Marcus",
+              "result": 15
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Vecka 17",
+          "note": "Inställt - frost",
+          "date": "2022-04-29",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": [],
+          "cancelled": true
+        },
+        {
+          "id": "4",
+          "name": "Vecka 18",
+          "note": "",
+          "date": "2022-05-06",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Göran",
+              "result": 17
+            },
+            {
+              "nick": "Ove",
+              "result": 11
+            },
+            {
+              "nick": "Johan A",
+              "result": 18
+            },
+            {
+              "nick": "Calle",
+              "result": 19
+            },
+            {
+              "nick": "Ola",
+              "result": 16
+            },
+            {
+              "nick": "Krister",
+              "result": 17
+            },
+            {
+              "nick": "Johan J",
+              "result": 15
+            },
+            {
+              "nick": "Mårten",
+              "result": 16
+            },
+            {
+              "nick": "Marcus",
+              "result": 17
+            }
+          ]
+        },
+        {
+          "id": "5",
+          "name": "Vecka 19",
+          "note": "",
+          "date": "2022-05-13",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Göran",
+              "result": 14
+            },
+            {
+              "nick": "Ove",
+              "result": 12
+            },
+            {
+              "nick": "Johan A",
+              "result": 13
+            },
+            {
+              "nick": "Calle",
+              "result": 17
+            },
+            {
+              "nick": "Krister",
+              "result": 14
+            },
+            {
+              "nick": "Johan J",
+              "result": 8
+            },
+            {
+              "nick": "Håkan",
+              "result": 16
+            },
+            {
+              "nick": "Jonny",
+              "result": 14
+            },
+            {
+              "nick": "Marcus",
+              "result": 17
+            }
+          ]
+        },
+        {
+          "id": "6",
+          "name": "Vecka 20",
+          "note": "Röd tee",
+          "date": "2022-05-20",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Göran",
+              "result": 21
+            },
+            {
+              "nick": "Ove",
+              "result": 9
+            },
+            {
+              "nick": "Johan A",
+              "result": 18
+            },
+            {
+              "nick": "Calle",
+              "result": 17
+            },
+            {
+              "nick": "Ola",
+              "result": 16
+            },
+            {
+              "nick": "Johan J",
+              "result": 14
+            },
+            {
+              "nick": "Håkan",
+              "result": 19
+            }
+          ]
+        },
+        {
+          "id": "7",
+          "name": "Vecka 21",
+          "note": "",
+          "date": "2022-05-27",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Göran",
+              "result": 18
+            },
+            {
+              "nick": "Johan A",
+              "result": 15
+            },
+            {
+              "nick": "Calle",
+              "result": 17
+            },
+            {
+              "nick": "Ola",
+              "result": 15
+            },
+            {
+              "nick": "Johan J",
+              "result": 12
+            },
+            {
+              "nick": "Håkan",
+              "result": 13
+            },
+            {
+              "nick": "Marcus",
+              "result": 17
+            }
+          ]
+        },
+        {
+          "id": "8",
+          "name": "Vecka 22",
+          "note": "",
+          "date": "2022-06-03",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Göran",
+              "result": 22
+            },
+            {
+              "nick": "Ove",
+              "result": 14
+            },
+            {
+              "nick": "Johan A",
+              "result": 15
+            },
+            {
+              "nick": "Calle",
+              "result": 19
+            },
+            {
+              "nick": "Ola",
+              "result": 16
+            },
+            {
+              "nick": "Krister",
+              "result": 17
+            },
+            {
+              "nick": "Johan J",
+              "result": 14
+            },
+            {
+              "nick": "Håkan",
+              "result": 15
+            },
+            {
+              "nick": "Mårten",
+              "result": 12
+            },
+            {
+              "nick": "Peter H",
+              "result": 15
+            },
+            {
+              "nick": "Marcus",
+              "result": 17
+            }
+          ]
+        },
+        {
+          "id": "9",
+          "name": "Vecka 23",
+          "note": "Vit tee",
+          "date": "2022-06-10",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Göran",
+              "result": 20
+            },
+            {
+              "nick": "Ove",
+              "result": 18
+            },
+            {
+              "nick": "Johan A",
+              "result": 16
+            },
+            {
+              "nick": "Calle",
+              "result": 15
+            },
+            {
+              "nick": "Ola",
+              "result": 17
+            },
+            {
+              "nick": "Krister",
+              "result": 15
+            },
+            {
+              "nick": "Johan J",
+              "result": 19
+            },
+            {
+              "nick": "Peter H",
+              "result": 14
+            }
+          ]
+        },
+        {
+          "id": "10",
+          "name": "Vecka 24",
+          "note": "",
+          "date": "2022-06-17",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Göran",
+              "result": 12
+            },
+            {
+              "nick": "Calle",
+              "result": 18
+            },
+            {
+              "nick": "Ola",
+              "result": 11
+            },
+            {
+              "nick": "Krister",
+              "result": 13
+            },
+            {
+              "nick": "Johan J",
+              "result": 18
+            },
+            {
+              "nick": "Marcus",
+              "result": 16
+            }
+          ]
+        },
+        {
+          "id": "11",
+          "name": "Vecka 26",
+          "note": "Paragolf-SM",
+          "date": "2022-07-01",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": [],
+          "cancelled": true
+        },
+        {
+          "id": "12",
+          "name": "Vecka 27",
+          "note": "",
+          "date": "2022-07-08",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Ove",
+              "result": 18
+            },
+            {
+              "nick": "Ola",
+              "result": 19
+            },
+            {
+              "nick": "Mårten",
+              "result": 16
+            }
+          ]
+        },
+        {
+          "id": "13",
+          "name": "Vecka 28",
+          "note": "Golfvecka",
+          "date": "2022-07-15",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Göran",
+              "result": 19
+            },
+            {
+              "nick": "Ove",
+              "result": 14
+            },
+            {
+              "nick": "Johan A",
+              "result": 16
+            },
+            {
+              "nick": "Ola",
+              "result": 16
+            },
+            {
+              "nick": "Johan J",
+              "result": 15
+            },
+            {
+              "nick": "Marcus",
+              "result": 15
+            }
+          ]
+        },
+        {
+          "id": "14",
+          "name": "Vecka 29",
+          "note": "Slagspel",
+          "date": "2022-07-22",
+          "type": "Slag",
+          "startHole": "1",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Göran",
+              "result": 37
+            },
+            {
+              "nick": "Ove",
+              "result": 39
+            },
+            {
+              "nick": "Johan A",
+              "result": 36
+            },
+            {
+              "nick": "Calle",
+              "result": 36
+            },
+            {
+              "nick": "Ola",
+              "result": 34
+            },
+            {
+              "nick": "Johan J",
+              "result": 39
+            },
+            {
+              "nick": "Håkan",
+              "result": 40
+            },
+            {
+              "nick": "Marcus",
+              "result": 37
+            }
+          ]
+        },
+        {
+          "id": "15",
+          "name": "Vecka 30",
+          "note": "",
+          "date": "2022-07-29",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Ove",
+              "result": 12
+            },
+            {
+              "nick": "Johan A",
+              "result": 17
+            },
+            {
+              "nick": "Calle",
+              "result": 17
+            },
+            {
+              "nick": "Ola",
+              "result": 17
+            },
+            {
+              "nick": "Krister",
+              "result": 18
+            },
+            {
+              "nick": "Johan J",
+              "result": 13
+            },
+            {
+              "nick": "Håkan",
+              "result": 7
+            },
+            {
+              "nick": "Mårten",
+              "result": 18
+            },
+            {
+              "nick": "Marcus",
+              "result": 15
+            }
+          ]
+        },
+        {
+          "id": "16",
+          "name": "Vecka 31",
+          "note": "",
+          "date": "2022-08-05",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Ove",
+              "result": 15
+            },
+            {
+              "nick": "Calle",
+              "result": 14
+            },
+            {
+              "nick": "Johan J",
+              "result": 20
+            },
+            {
+              "nick": "Håkan",
+              "result": 15
+            },
+            {
+              "nick": "Peter H",
+              "result": 15
+            },
+            {
+              "nick": "Marcus",
+              "result": 13
+            }
+          ]
+        },
+        {
+          "id": "17",
+          "name": "Vecka 32",
+          "note": "Korthål",
+          "date": "2022-08-12",
+          "type": "Slag",
+          "startHole": "10",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Johan A",
+              "result": 38.5
+            },
+            {
+              "nick": "Calle",
+              "result": 33.6
+            },
+            {
+              "nick": "Ola",
+              "result": 36.1
+            },
+            {
+              "nick": "Krister",
+              "result": 42
+            },
+            {
+              "nick": "Håkan",
+              "result": 41.8
+            },
+            {
+              "nick": "Mårten",
+              "result": 39.4
+            },
+            {
+              "nick": "Marcus",
+              "result": 35
+            }
+          ]
+        },
+        {
+          "id": "18",
+          "name": "Vecka 33",
+          "note": "",
+          "date": "2022-08-19",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Johan A",
+              "result": 17
+            },
+            {
+              "nick": "Calle",
+              "result": 19
+            },
+            {
+              "nick": "Ola",
+              "result": 20
+            },
+            {
+              "nick": "Krister",
+              "result": 19
+            },
+            {
+              "nick": "Johan J",
+              "result": 17
+            },
+            {
+              "nick": "Håkan",
+              "result": 19
+            },
+            {
+              "nick": "Mårten",
+              "result": 12
+            },
+            {
+              "nick": "Peter H",
+              "result": 15
+            },
+            {
+              "nick": "Marcus",
+              "result": 19
+            }
+          ]
+        },
+        {
+          "id": "19",
+          "name": "Vecka 34",
+          "note": "3 klubbor",
+          "date": "2022-08-26",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Göran",
+              "result": 13
+            },
+            {
+              "nick": "Calle",
+              "result": 16
+            },
+            {
+              "nick": "Johan J",
+              "result": 15
+            },
+            {
+              "nick": "Marcus",
+              "result": 16
+            }
+          ]
+        },
+        {
+          "id": "20",
+          "name": "Vecka 35",
+          "note": "",
+          "date": "2022-09-02",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Göran",
+              "result": 17
+            },
+            {
+              "nick": "Ove",
+              "result": 16
+            },
+            {
+              "nick": "Calle",
+              "result": 14
+            },
+            {
+              "nick": "Ola",
+              "result": 15
+            },
+            {
+              "nick": "Johan J",
+              "result": 17
+            },
+            {
+              "nick": "Marcus",
+              "result": 16
+            }
+          ]
+        },
+        {
+          "id": "21",
+          "name": "Vecka 36",
+          "note": "",
+          "date": "2022-09-09",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": [
+            {
+              "nick": "Ola",
+              "result": 19
+            },
+            {
+              "nick": "Krister",
+              "result": 19
+            },
+            {
+              "nick": "Johan J",
+              "result": 18
+            }
+          ]
+        },
+        {
+          "id": "22",
+          "name": "Avslutning, första 9",
+          "note": "",
+          "date": "2022-09-10",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": false,
+          "results": [
+            {
+              "nick": "Ove",
+              "result": 12
+            },
+            {
+              "nick": "Johan A",
+              "result": 15
+            },
+            {
+              "nick": "Calle",
+              "result": 13
+            },
+            {
+              "nick": "Ola",
+              "result": 21
+            },
+            {
+              "nick": "Johan J",
+              "result": 14
+            }
+          ]
+        },
+        {
+          "id": "23",
+          "name": "Avslutning, sista 9",
+          "note": "",
+          "date": "2022-09-09",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": false,
+          "results": [
+            {
+              "nick": "Ove",
+              "result": 7
+            },
+            {
+              "nick": "Calle",
+              "result": 14
+            },
+            {
+              "nick": "Ola",
+              "result": 11
+            },
+            {
+              "nick": "Johan J",
+              "result": 17
+            }
+          ]
+        }
+      ]
+    },
+    "2023": {
+      "players": [
+        {
+          "name": "Göran Silfver",
+          "nick": "Göran"
+        },
+        {
+          "name": "Johan Asklund",
+          "nick": "Johan A"
+        },
+        {
+          "name": "Ove Arbsjö",
+          "nick": "Ove"
+        },
+        {
+          "name": "Carl Crane",
+          "nick": "Calle"
+        },
+        {
+          "name": "Ola Rådeström",
+          "nick": "Ola"
+        },
+        {
+          "name": "Krister Göransson",
+          "nick": "Krister"
+        },
+        {
+          "name": "Johan Jigerström",
+          "nick": "Johan J"
+        },
+        {
+          "name": "Håkan Lindgren",
+          "nick": "Håkan"
+        },
+        {
+          "name": "Mårten Lundberg",
+          "nick": "Mårten"
+        },
+        {
+          "name": "Peter Hagström",
+          "nick": "Peter H"
+        },
+        {
+          "name": "Marcus Andersson",
+          "nick": "Marcus"
+        },
+        {
+          "name": "Leo Jigerström",
+          "nick": "Leo"
+        },
+        {
+          "name": "Tomas Szabo",
+          "nick": "Tomas"
+        }
+      ],
+      "events": [
+        {
+          "id": "1",
+          "name": "Uppstart, första 9",
+          "note": "",
+          "date": "2023-04-29",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "2",
+          "name": "Uppstart, sista 9",
+          "note": "",
+          "date": "2023-04-29",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "3",
+          "name": "Vecka 18",
+          "note": "",
+          "date": "2023-05-05",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "4",
+          "name": "Vecka 19",
+          "note": "",
+          "date": "2023-05-12",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "5",
+          "name": "Vecka 20",
+          "note": "",
+          "date": "2023-05-19",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "6",
+          "name": "Vecka 21",
+          "note": "Röd tee",
+          "date": "2023-05-26",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "7",
+          "name": "Vecka 22",
+          "note": "",
+          "date": "2023-06-02",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "8",
+          "name": "Vecka 23",
+          "note": "",
+          "date": "2023-06-09",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "9",
+          "name": "Vecka 24",
+          "note": "Vit tee",
+          "date": "2023-06-16",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "10",
+          "name": "Vecka 26",
+          "note": "",
+          "date": "2023-06-30",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "11",
+          "name": "Vecka 27",
+          "note": "",
+          "date": "2023-07-07",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "12",
+          "name": "Vecka 28",
+          "note": "",
+          "date": "2023-07-14",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "13",
+          "name": "Vecka 29",
+          "note": "Slagspel",
+          "date": "2023-07-21",
+          "type": "Slag",
+          "startHole": "1",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "14",
+          "name": "Vecka 30",
+          "note": "",
+          "date": "2023-07-28",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "15",
+          "name": "Vecka 31",
+          "note": "",
+          "date": "2023-08-04",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "16",
+          "name": "Vecka 32",
+          "note": "Korthål",
+          "date": "2023-08-11",
+          "type": "Slag",
+          "startHole": "10",
+          "doped": false,
+          "results": []
+        },
+        {
+          "id": "17",
+          "name": "Vecka 33",
+          "note": "",
+          "date": "2023-08-18",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "18",
+          "name": "Vecka 34",
+          "note": "",
+          "date": "2023-08-25",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "19",
+          "name": "Vecka 35",
+          "note": "3 klubbor",
+          "date": "2023-09-01",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": false,
+          "results": []
+        },
+        {
+          "id": "20",
+          "name": "Vecka 36",
+          "note": "",
+          "date": "2023-09-08",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "21",
+          "name": "Vecka 37",
+          "note": "",
+          "date": "2023-09-15",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "22",
+          "name": "Avslutning, första 9",
+          "note": "",
+          "date": "2023-09-16",
+          "type": "Poäng",
+          "startHole": "1",
+          "doped": true,
+          "results": []
+        },
+        {
+          "id": "23",
+          "name": "Avslutning, sista 9",
+          "note": "",
+          "date": "2023-09-16",
+          "type": "Poäng",
+          "startHole": "10",
+          "doped": true,
+          "results": []
+        }
+      ]
+    }
+  }
+}

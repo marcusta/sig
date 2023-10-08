@@ -6,9 +6,8 @@ import {
   puttsAs,
 } from "./strokecalculator";
 import "./DataTrainer.css";
-import GolfPuttingStrokeArc from "./CanvasArc";
 
-export function DataTrainer({}: { distance: number }) {
+export function DataTrainer() {
   const [distance, setDistance] = useState(5);
   const [txtDistance, setTxtDistance] = useState("5");
   const [stimp, setStimp] = useState(11);
@@ -37,9 +36,10 @@ export function DataTrainer({}: { distance: number }) {
   }
 
   function updateStimp(stimp: string) {
+    console.log("stimp: " + stimp);
     setTxtStimp(stimp);
     let value = parseInt(stimp);
-    if (Number.isNaN(value) || value < 10 || value > 11) {
+    if (Number.isNaN(value) || value < 8 || value > 13) {
       return;
     }
     setStimp(value);
@@ -54,52 +54,112 @@ export function DataTrainer({}: { distance: number }) {
     elevation
   );
 
-  return (
-    <div>
-      Distance:{" "}
-      <input
-        type={"text"}
-        value={txtDistance}
-        onChange={(e) => updateDistance(e.target.value)}
-      />
-      Elevation:{" "}
-      <input
-        type={"text"}
-        value={txtElevation}
-        onChange={(e) => updateElevation(e.target.value)}
-      />
-      Stimp:{" "}
-      <input
-        type={"text"}
-        value={txtStimp}
-        onChange={(e) => updateStimp(e.target.value)}
-      />
-      <br />
-      <DataView
-        puttsAsDist={puttsAsDist}
-        ballspeed={ballspeed}
-        strokeLength={strokeLength}
-        blastMotionClubSpeed={bmClubspeed}
-        stimp={stimp}
-        elevation={elevation}
-        distance={distance}
-      />
-      <GolfPuttingStrokeArc
-        length={strokeLength}
-        width={800}
-        height={800}
-        color="#bbbbbb"
-        lineWidth={12}
-        x={100}
-        y={200}
-        radius={200}
-        startAngle={Math.PI / 8}
-        endAngle={Math.PI}
-        backStrokeDuration={600}
-        forwardStrokeDuration={300}
-      />
-    </div>
+  const dataView = (
+    <DataView
+      puttsAsDist={puttsAsDist}
+      ballspeed={ballspeed}
+      strokeLength={strokeLength}
+      blastMotionClubSpeed={bmClubspeed}
+      stimp={stimp}
+      elevation={elevation}
+      distance={distance}
+    />
   );
+
+  let inputSet = <div></div>;
+
+  if (isMobileView()) {
+    inputSet = (
+      <div className="mobileInputs">
+        <div>
+          Distance:{" "}
+          <input
+            type={"range"}
+            value={txtDistance}
+            onChange={(e) => updateDistance(e.target.value)}
+            min={2}
+            max={25}
+            step={0.1}
+            style={{ width: "100%" }}
+          />
+        </div>
+        <div>
+          Elevation:{" "}
+          <input
+            type={"range"}
+            value={txtElevation}
+            onChange={(e) => updateElevation(e.target.value)}
+            min={-130}
+            max={130}
+            step={2}
+            style={{ width: "100%" }}
+          />
+        </div>
+        <div>
+          Stimp:
+          <select
+            value={txtStimp}
+            onChange={(e) => {
+              updateStimp(e.target.value);
+              console.log("stimp changed");
+            }}
+            style={{ width: "100%" }}
+          >
+            <option value={8}>8</option>
+            <option value={9}>9</option>
+            <option value={10}>10</option>
+            <option value={11}>11</option>
+            <option value={12}>12</option>
+            <option value={13}>13</option>
+          </select>
+        </div>
+      </div>
+    );
+  } else {
+    inputSet = (
+      <div>
+        Distance:{" "}
+        <input
+          type={"text"}
+          value={txtDistance}
+          onChange={(e) => updateDistance(e.target.value)}
+        />
+        Elevation:{" "}
+        <input
+          type={"text"}
+          value={txtElevation}
+          onChange={(e) => updateElevation(e.target.value)}
+        />
+        Stimp:{" "}
+        <input
+          type={"text"}
+          value={txtStimp}
+          onChange={(e) => updateStimp(e.target.value)}
+        />
+        <br />
+      </div>
+    );
+  }
+
+  if (isMobileView()) {
+    return (
+      <>
+        {dataView}
+        {inputSet}
+      </>
+    );
+  } else {
+    return (
+      <>
+        {inputSet}
+        {dataView}
+      </>
+    );
+  }
+}
+
+function isMobileView() {
+  return window.innerWidth < 600;
 }
 
 function DataView({
@@ -120,13 +180,13 @@ function DataView({
   blastMotionClubSpeed: number;
 }) {
   return (
-    <div className="dataTileSet">
-      <DataTile label="Putts as" value={puttsAsDist} />
-      <DataTile label="Ballspeed" value={ballspeed} />
-      <DataTile label="Club speed" value={blastMotionClubSpeed} />
-      <DataTile label="Stroke Length" value={strokeLength} />
-      <DataTile label="Elevation" value={elevation} />
-      <DataTile label="Distance" value={distance} />
+    <div className={isMobileView() ? "mobileDataTileSet" : "dataTileSet"}>
+      <DataTile label="Putts as (m)" value={puttsAsDist} />
+      <DataTile label="Ballspeed (mph)" value={ballspeed} />
+      <DataTile label="Club speed (mph)" value={blastMotionClubSpeed} />
+      <DataTile label="Stroke Length (cm)" value={strokeLength} />
+      <DataTile label="Elevation (cm)" value={elevation} />
+      <DataTile label="Distance (m)" value={distance} />
       <DataTile label="Stimp" value={stimp} />
     </div>
   );

@@ -1,4 +1,5 @@
 const playersPages = require('./html/players.js');
+const path = require('path');
 const { getPlayers, getPlayerUid, deletePlayer, setPlayerUid } = require("./player_db.js");
 
 function getRoutes(app) {
@@ -26,6 +27,10 @@ function getRoutes(app) {
   app.post("/players/write", (req, res) => {
     setPlayerUid(req.body['name'], req.body['uid']);
     res.redirect('/players');
+  });
+
+  app.get("/teetime/*", (req, res) => {
+    res.sendFile(path.resolve('./public/teetime', 'index.html'));
   });
   
   app.get("/uid/:name", (req, res) => {

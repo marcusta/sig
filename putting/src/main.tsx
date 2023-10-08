@@ -8,16 +8,11 @@ const root = ReactDOM.createRoot(
 );
 
 function render() {
-  let distance = Math.floor(Math.random() * 200) / 10;
   root.render(
     <React.StrictMode>
-      <App distance={distance} />
+      <App />
     </React.StrictMode>
   );
 }
 
 render();
-
-setInterval(() => {
-  render();
-}, 15000);

@@ -5,11 +5,75 @@ console.log('is local: ', local);
 const importFilePath = local ? './data/import.json' : '/data/import.json';
 const resultFilePath = local ? './data/results.json' : '/data/results.json';
 
+const pointsForPlacement = [50,40,32,25,20,16,13,11,9,8,7,6,5,4,3,2,1];
+
 function readSgtExportData() {
   return fs.readFileSync(importFilePath, 'utf8');
 }
 
-const pointsForPlacement = [50,40,32,25,20,16,13,11,9,8,7,6,5,4,3,2,1];
+function doStuff() {
+  readSgtExportDataAndWriteResults();
+  const tournaments = getTournamentsFromData();
+  const tournament = Object.keys(tournaments).map(tournamentId => tournaments[tournamentId])[2];
+  console.log(tournament);
+}
+doStuff();
+
+function calculatePositionsForTournament(tournament, type) {
+  const sortedPlayers = getLeaderboardForTournament(tournament, type);
+  let previousPosition = undefined;
+  sortedPlayers.forEach((player, index) => {
+    let position = undefined;
+    const score = player[type];
+    const previousPlayer = sortedPlayers[index - 1];
+    const previousScore = previousPlayer ? previousPlayer[type] : undefined;
+    const nextPlayer = sortedPlayers[index + 1];
+    const nextScore = nextPlayer ? nextPlayer[type] : undefined;
+
+    if (index === 0) {
+      if (nextPlayer && score === nextScore) {
+        position = 'T1';
+      } else {
+        position = '1';
+      }
+    } else if (score !== nextScore && score !== previousScore) {
+      position = (index + 1).toString();
+    } else if (score === previousScore) {
+      position = previousPosition;
+    } else {
+      position = 'T' + (index + 1);
+    }
+    tournament.playerRounds[player.id][type + 'Position'] = position;
+    previousPosition = position;
+  });
+}
+
+function calculatePointsForTournament(tournament, type) {
+  const sortedPlayers = getLeaderboardForTournament(tournament, type).filter(hasPlayedBothRounds);
+  for (let i = 0; i < sortedPlayers.length; ) {
+    const player = sortedPlayers[i];
+    const score = player[type];
+
+    const playersWithScore = getPlayersWithSameScore(sortedPlayers, type, score);
+    for (let j = 0; j < playersWithScore.length; j++) {
+      const playerWithScore = playersWithScore[j];
+      const pointsSlice = pointsForPlacement.slice(i, i + playersWithScore.length);
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      const totalPoints = pointsSlice.reduce(reducer, 0);
+      const points = Math.round(totalPoints / playersWithScore.length);
+      tournament.playerRounds[playerWithScore.id][type + 'Points'] = points;
+    }
+    i += playersWithScore.length;
+  }
+}
+
+function hasPlayedBothRounds(player) {
+  return player.rounds && player.rounds.length === 2 && player.rounds[0].activeHole == 19 && player.rounds[1].activeHole == 19;
+}
+
+function getPlayersWithSameScore(players, type, score) {
+  return players.filter(player => player[type] === score);
+}
 
 /**
  * 
@@ -30,15 +94,6 @@ function readSgtExportDataAndWriteResults() {
   const tournaments = readTournaments();
   writeTournamentsToFile(tournaments);
 }
-
-function doStuff() {
-  readSgtExportDataAndWriteResults();
-  const start = new Date().getTime();
-  const tournaments = getTournamentsFromData();
-  printTournaments(tournaments);
-  console.log('read tournaments from file: ', new Date().getTime() - start);
-}
-doStuff();
 
 function printLeaderboard(tournament, type = 'net') {
   const sortedPlayers = getLeaderboardForTournament(tournament, type);
@@ -81,7 +136,25 @@ function readTournaments() {
   });
   addScoresToTournaments(tournaments, scoreCards);
   sumScoresForTournaments(tournaments);
+  calculatePositionsForTournaments(tournaments);
+  calculatePointsForTournaments(tournaments);
   return tournaments;
+}
+
+function calculatePointsForTournaments(tournaments) {
+  Object.keys(tournaments).forEach(tournamentId => {
+    const tournament = tournaments[tournamentId];
+    calculatePointsForTournament(tournament, 'gross');
+    calculatePointsForTournament(tournament, 'net');
+  });
+}
+
+function calculatePositionsForTournaments(tournaments) {
+  Object.keys(tournaments).forEach(tournamentId => {
+    const tournament = tournaments[tournamentId];
+    calculatePositionsForTournament(tournament, 'gross');
+    calculatePositionsForTournament(tournament, 'net');
+  });
 }
 
 function addScoresToTournaments(tournaments, scoreCards) {
@@ -135,49 +208,57 @@ function mapFullScoreCardToTournament(scoreCard) {
   return {
     id: scoreCard.tournamentId,
     name: scoreCard.TourneyName,
-    pars: [
-      toInt(scoreCard.h1_Par),
-      toInt(scoreCard.h2_Par),
-      toInt(scoreCard.h3_Par),
-      toInt(scoreCard.h4_Par),
-      toInt(scoreCard.h5_Par),
-      toInt(scoreCard.h6_Par),
-      toInt(scoreCard.h7_Par),
-      toInt(scoreCard.h8_Par),
-      toInt(scoreCard.h9_Par),
-      toInt(scoreCard.h10_Par),
-      toInt(scoreCard.h11_Par),
-      toInt(scoreCard.h12_Par),
-      toInt(scoreCard.h13_Par),
-      toInt(scoreCard.h14_Par),
-      toInt(scoreCard.h15_Par),
-      toInt(scoreCard.h16_Par),
-      toInt(scoreCard.h17_Par),
-      toInt(scoreCard.h18_Par),
-    ],
-    indexes: [
-      toInt(scoreCard.h1_Index),
-      toInt(scoreCard.h2_Index),
-      toInt(scoreCard.h3_Index),
-      toInt(scoreCard.h4_Index),
-      toInt(scoreCard.h5_Index),
-      toInt(scoreCard.h6_Index),
-      toInt(scoreCard.h7_Index),
-      toInt(scoreCard.h8_Index),
-      toInt(scoreCard.h9_Index),
-      toInt(scoreCard.h10_Index),
-      toInt(scoreCard.h11_Index),
-      toInt(scoreCard.h12_Index),
-      toInt(scoreCard.h13_Index),
-      toInt(scoreCard.h14_Index),
-      toInt(scoreCard.h15_Index),
-      toInt(scoreCard.h16_Index),
-      toInt(scoreCard.h17_Index),
-      toInt(scoreCard.h18_Index),
-    ],
+    pars: getParsFromScorecard(scoreCard),
+    indexes: getIndexesFromScorecard(scoreCard),
     par: scoreCard.total_par,
     playerRounds: {}
   }
+}
+
+function getIndexesFromScorecard(scoreCard) {
+  return [
+    toInt(scoreCard.h1_index),
+    toInt(scoreCard.h2_index),
+    toInt(scoreCard.h3_index),
+    toInt(scoreCard.h4_index),
+    toInt(scoreCard.h5_index),
+    toInt(scoreCard.h6_index),
+    toInt(scoreCard.h7_index),
+    toInt(scoreCard.h8_index),
+    toInt(scoreCard.h9_index),
+    toInt(scoreCard.h10_index),
+    toInt(scoreCard.h11_index),
+    toInt(scoreCard.h12_index),
+    toInt(scoreCard.h13_index),
+    toInt(scoreCard.h14_index),
+    toInt(scoreCard.h15_index),
+    toInt(scoreCard.h16_index),
+    toInt(scoreCard.h17_index),
+    toInt(scoreCard.h18_index),
+  ];
+}
+
+function getParsFromScorecard(scoreCard) {
+  return [
+    toInt(scoreCard.h1_Par),
+    toInt(scoreCard.h2_Par),
+    toInt(scoreCard.h3_Par),
+    toInt(scoreCard.h4_Par),
+    toInt(scoreCard.h5_Par),
+    toInt(scoreCard.h6_Par),
+    toInt(scoreCard.h7_Par),
+    toInt(scoreCard.h8_Par),
+    toInt(scoreCard.h9_Par),
+    toInt(scoreCard.h10_Par),
+    toInt(scoreCard.h11_Par),
+    toInt(scoreCard.h12_Par),
+    toInt(scoreCard.h13_Par),
+    toInt(scoreCard.h14_Par),
+    toInt(scoreCard.h15_Par),
+    toInt(scoreCard.h16_Par),
+    toInt(scoreCard.h17_Par),
+    toInt(scoreCard.h18_Par),
+  ];
 }
 
 /** 

@@ -1,51 +1,79 @@
-
-@media only screen and (min-width: 410px) and (orientation: portrait) {
-  .dataLabel {
-    font-size: 0.7rem;
-  }
-
-  .data {
-    font-size: 2.3rem;
-  }
-
+.mobileInputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-@media (min-width: 700px) {
-  .dataLabel {
-    font-size: 1.5rem;
-  }
-
-  .data {
-    font-size: 5rem;
-  }
+.mobileInputs > div {
+  width: 80%;
 }
 
-.dataTileSet {
-    /* use css grid to position the tiles */
+.mobileDataTileSet {
+    /* use css grid to create two columns and layout tiles in */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-gap: 10px;
     padding: 10px;
     margin: 10px;
+
+}
+
+.mobileDataTileSet .dataTile {
+    background-color: #333;
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 4px;
+    margin: 4px;
+}
+
+.mobileDataTileSet .dataTile .data {
+  font-size: 3rem;
+  font-weight: normal;
+  color: #ddd;
+  text-align: center;
+  padding: 0px;
+  margin: 20px;
+  margin-bottom: 10px;
+}
+
+.mobileDataTileSet .dataTile .dataLabel {
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: #ddd;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 15px;
+}
+
+.dataTileSet {
+  /* use css grid to position the tiles in a single row */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-gap: 10px;
+  padding: 10px;
+  margin: 10px;
 }
 
 .dataTile {
-    background-color: #333;
-    border: 1px solid #333;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
+  background-color: #333;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 10px;
+  margin: 10px;
 }
 
 .dataLabel {
-    font-size: 1.5rem;
-    font-weight: normal;
-    color: #ddd;
-    text-align: center;
-    padding: 0px;
-    margin: 0px;
-    margin-bottom: 45px;
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: #ddd;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 45px;
 }
 
 .data {
