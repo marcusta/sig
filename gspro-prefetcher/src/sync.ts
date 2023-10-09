@@ -1,6 +1,15 @@
-import { Course, CourseManifest, CourseManifestList, CourseToDownload } from './types';
-import { checkIfDownloadedFileExists, createCourseFolderIfMising, readCourseList, writeCourseList } from "./file-storage";
-import { downloadCourse, fetchCourseManifests } from "./downloader";
+import { downloadCourses, fetchCourseManifests } from "./downloader";
+import {
+  checkIfDownloadedFileExists,
+  readCourseList,
+  writeCourseList,
+} from "./file-storage";
+import {
+  Course,
+  CourseManifest,
+  CourseManifestList,
+  CourseToDownload,
+} from "./types";
 
 /*const courseManifestUrls = [
   "https://simulatorgolftour.com/course_manifest.json",
@@ -11,11 +20,15 @@ import { downloadCourse, fetchCourseManifests } from "./downloader";
 ];*/
 
 const courseManifestUrls: CourseManifestList = [
-  { url: "http://127.0.0.1:3010/testManifest.json", folder: "testManifest", courseList: [] },
+  {
+    url: "http://127.0.0.1:3010/testManifest.json",
+    folder: "testManifest",
+    courseList: [],
+  },
   {
     url: "http://127.0.0.1:3010/test-folder2/testManifest2.json",
     folder: "testManifest2",
-    courseList: []
+    courseList: [],
   },
 ];
 
@@ -48,25 +61,7 @@ export async function doFullUpdateCycle() {
   newCourseManifestList.forEach((newManifest) => {
     console.log("for each new manifest ", newManifest.folder);
     const oldManifest = oldCourseManifestsObj[newManifest.folder];
-    if (!oldManifest) {
-      // if the manifest doesn't exist, add all courses to download
-      console.log("old manifest of folder did not exist...");
-      coursesToDownload.push(
-        ...newManifest.courseList.map((course) => ({
-          course: course,
-          targetFolder: newManifest.folder,
-        }))
-      );
-    } else {
-      // if the manifest exists, compare each course
-      console.log("old manifest exists...", oldManifest.folder);
-      const courses = findCoursesToDownload(
-        oldManifest.courseList,
-        newManifest.courseList,
-        newManifest.folder
-      );
-      coursesToDownload.push(...courses);
-    }
+    coursesToDownload.push(...findCoursesToDownload(oldManifest, newManifest));
   });
 
   console.log("courses to download count", coursesToDownload.length);
@@ -74,26 +69,40 @@ export async function doFullUpdateCycle() {
   writeCourseList(newCourseManifestList);
 }
 
-async function downloadCourses(coursesToDownload: CourseToDownload[]) {
-  for (const courseToDownload of coursesToDownload) {
-    console.log(
-      "about to download course",
-      courseToDownload.course.Name,
-      "to folder",
-      courseToDownload.targetFolder
+function findCoursesToDownload(
+  oldManifest: CourseManifest,
+  newManifest: CourseManifest
+) {
+  const coursesToDownload: CourseToDownload[] = [];
+  if (!oldManifest) {
+    // if the manifest doesn't exist, add all courses to download
+    console.log("old manifest of folder did not exist...");
+    coursesToDownload.push(
+      ...newManifest.courseList.map((course) => ({
+        course: course,
+        targetFolder: newManifest.folder,
+      }))
     );
-    await downloadCourse(courseToDownload);
-    console.log("downloaded course", courseToDownload.course.Name);
+  } else {
+    // if the manifest exists, compare each course
+    console.log("old manifest exists...", oldManifest.folder);
+    const courses = findCoursesToDownloadByComparingManifests(
+      oldManifest.courseList,
+      newManifest.courseList,
+      newManifest.folder
+    );
+    coursesToDownload.push(...courses);
   }
+  return coursesToDownload;
 }
 
-function findCoursesToDownload(
+function findCoursesToDownloadByComparingManifests(
   oldManifestCourseList: Course[],
   newManifestCourseList: Course[],
   folder: string
 ): CourseToDownload[] {
   // convert oldManifestCourses to object keyed on course name
-  console.log("finding courses to donwload!");
+  console.log("finding courses to download!");
   const oldManifestCoursesObj: { [key: string]: Course } = {};
   for (const course of oldManifestCourseList) {
     oldManifestCoursesObj[course.Name] = course;
@@ -165,6 +174,3 @@ function printCourseInfo() {
   const courseCounts = getCourseInfo();
   console.log(courseCounts);
 }
-
-
-
