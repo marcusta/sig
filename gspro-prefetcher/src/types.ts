@@ -51,6 +51,8 @@ Example course json
     },
 */
 
+export type FullManifest = Course[];
+
 export interface Course {
   courseKey: string;
   Name: string;

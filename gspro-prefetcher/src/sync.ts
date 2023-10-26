@@ -1,36 +1,12 @@
+import { courseManifestPublishPath, courseManifestUrls } from "./configuration";
 import { downloadCourses, fetchCourseManifests } from "./downloader";
 import {
   checkIfDownloadedFileExists,
+  publishMergedManifest,
   readCourseList,
   writeCourseList,
 } from "./file-storage";
-import {
-  Course,
-  CourseManifest,
-  CourseManifestList,
-  CourseToDownload,
-} from "./types";
-
-/*const courseManifestUrls = [
-  "https://simulatorgolftour.com/course_manifest.json",
-  "https://tekbud.s3.us-east-2.amazonaws.com/tekbudcourselist1.json",
-  "https://www.dropbox.com/s/5er3u2xanxjnqnj/fantasyv2.json?dl=1",
-  "http://pakmanstudios.com/tier1-093006.json",
-  "http://pakmanstudios.com/tier2-070101.json",
-];*/
-
-const courseManifestUrls: CourseManifestList = [
-  {
-    url: "http://127.0.0.1:3010/testManifest.json",
-    folder: "testManifest",
-    courseList: [],
-  },
-  {
-    url: "http://127.0.0.1:3010/test-folder2/testManifest2.json",
-    folder: "testManifest2",
-    courseList: [],
-  },
-];
+import { Course, CourseManifest, CourseToDownload } from "./types";
 
 // full update functionality is
 // 1. fetch course manifests
@@ -48,6 +24,7 @@ const courseManifestUrls: CourseManifestList = [
 
 export async function doFullUpdateCycle() {
   const newCourseManifestList = await fetchCourseManifests(courseManifestUrls);
+
   const oldCourseManifestList = readCourseList();
   console.log("read old course manifest...");
   // convert oldCourseManifestList to obj keyed on folder name
@@ -65,7 +42,13 @@ export async function doFullUpdateCycle() {
   });
 
   console.log("courses to download count", coursesToDownload.length);
-  downloadCourses(coursesToDownload);
+  downloadCourses(coursesToDownload, (course, status) => {
+    console.log(`Download of ${course.course.Name} was ${status}`);
+    // After every successful download, publish the merged manifest
+    if (status === "successful") {
+      publishMergedManifest(newCourseManifestList, courseManifestPublishPath);
+    }
+  });
   writeCourseList(newCourseManifestList);
 }
 

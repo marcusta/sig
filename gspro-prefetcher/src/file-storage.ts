@@ -33,3 +33,29 @@ export function fileExistsInFolder(folderName: string, filename: string) {
   const filePath = path.join(folderName, filename);
   return fs.existsSync(filePath);
 }
+
+export function publishMergedManifest(
+  manifestList: CourseManifestList,
+  outputPath: string
+) {
+  const baseURL = "http://yourserver.com";
+  const mergedManifest: Course[] = [];
+
+  manifestList.forEach((manifest) => {
+    manifest.courseList.forEach((course) => {
+      const courseFilePath = path.join(
+        manifest.folder,
+        `${course.CourseFolder}.zip`
+      );
+      if (fs.existsSync(courseFilePath)) {
+        // Update the Download URLs to point to your server
+        course.DownloadURL = `${baseURL}/${manifest.folder}/${course.CourseFolder}.zip`;
+        course.DownloadURL2 = `${baseURL}/${manifest.folder}/${course.CourseFolder}2.zip`;
+        course.DownloadURL3 = `${baseURL}/${manifest.folder}/${course.CourseFolder}3.zip`;
+        mergedManifest.push(course);
+      }
+    });
+  });
+
+  fs.writeFileSync(outputPath, JSON.stringify(mergedManifest, null, 2));
+}
