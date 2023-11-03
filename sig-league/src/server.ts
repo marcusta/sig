@@ -36,7 +36,7 @@ createDatabase(sqliteDb);
 registerCourseAdminHandlers(app, courseRepo, teeboxRepo);
 registerTournamentAdminHandlers(app, courseRepo, teeboxRepo, tournamentRepo);
 registerResultsHandlers(app, sgtScorecardsRepo, tournamentRepo);
-startSgtSync(sgtURL, filepathForSyncFile, 1, fileImporter);
+startSgtSync(sgtURL, filepathForSyncFile, 40, fileImporter);
 
 app.listen(PORT, () => {
   // dropDatabase();

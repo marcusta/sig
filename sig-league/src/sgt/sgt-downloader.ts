@@ -1,6 +1,7 @@
 import axios from "axios";
 import fs from "fs";
 import { promisify } from "util";
+import { log } from "../log";
 import { FileImporter } from "./file-importer";
 
 // URL for SGT https://simulatorgolftour.com/club-api/3/club-scores
@@ -18,13 +19,15 @@ export async function startSgtSync(
       syncInterval,
       fileImporter
     );
-  }, 1000 * 60 * 20);
-  await downloadScoresFromSgtAndImport(
-    sgtURL,
-    filepath,
-    syncInterval,
-    fileImporter
-  );
+  }, 1000 * syncInterval);
+  setTimeout(async () => {
+    await downloadScoresFromSgtAndImport(
+      sgtURL,
+      filepath,
+      syncInterval,
+      fileImporter
+    );
+  }, 1000 * 5);
 }
 
 async function downloadScoresFromSgtAndImport(
@@ -35,13 +38,23 @@ async function downloadScoresFromSgtAndImport(
 ) {
   let downloadError: any;
   try {
-    const downloaded = await downloadFileIfOld(sgtURL, filepath, syncInterval);
+    const startDownloadTime = new Date();
+    await downloadFileIfOld(sgtURL, filepath, syncInterval);
+    const endDownloadTime = new Date();
+    log(
+      `downloaded file in ${
+        endDownloadTime.getTime() - startDownloadTime.getTime()
+      } ms`
+    );
   } catch (err: unknown) {
     downloadError = err;
   }
   if (!downloadError) {
-    console.log("importing file to db");
+    log("importing file to db");
+    const startTime = new Date();
     await fileImporter.importFile(filepath);
+    const endTime = new Date();
+    log(`imported file to db in ${endTime.getTime() - startTime.getTime()} ms`);
   }
 }
 
@@ -55,24 +68,24 @@ export async function downloadFileIfOld(
     // Check if file exists and get its stats
     let shouldDownload = true;
 
-    try {
+    /*try {
       const fileStats = await stat(outputLocationPath);
       const now = new Date();
-      const age = (now.getTime() - fileStats.mtimeMs) / (1000 * 60); // file age in minutes
-      shouldDownload = age > maxAgeInMinutes;
+      const age = now.getTime() - fileStats.mtimeMs; // file age in minutes
+      shouldDownload = age > maxAgeInMinutes * 60 * 1000;
     } catch (error: any) {
       // If the file doesn't exist, an error will be thrown, and we'll proceed to download
       if (error.code !== "ENOENT") {
         throw error;
       }
-    }
+    }*/
 
     // If the file is old enough, download it
     if (shouldDownload) {
       await downloadSgtFile(fileUrl, outputLocationPath);
       return true;
     } else {
-      console.log(
+      log(
         `File at ${outputLocationPath} is not older than ${maxAgeInMinutes} minutes. No download needed.`
       );
     }
@@ -88,7 +101,7 @@ export async function downloadSgtFile(
   outputLocationPath: string
 ): Promise<void> {
   try {
-    console.log(`Downloading file from ${fileUrl}`);
+    log(`Downloading file from ${fileUrl}`);
     // Axios GET request to retrieve the file as a buffer
     const response = await axios.get<Buffer>(fileUrl, {
       responseType: "arraybuffer",
@@ -97,7 +110,7 @@ export async function downloadSgtFile(
     // Using fs.promises.writeFile to save the file buffer directly to disk
     await fs.promises.writeFile(outputLocationPath, response.data);
 
-    console.log(`Downloaded file saved to ${outputLocationPath}`);
+    log(`Downloaded file saved to ${outputLocationPath}`);
   } catch (error) {
     console.error("An error occurred during file download:", error);
     throw error; // rethrow the error for the caller to handle if necessary
