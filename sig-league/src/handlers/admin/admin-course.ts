@@ -2,9 +2,9 @@ import express from "express";
 import { log } from "../../log";
 import { CourseRepo } from "../../repos/course-repo";
 import { TeeboxRepo } from "../../repos/teebox-repo";
-import { Panel } from "../templates/components";
 import { AddCourse } from "./templates/courses/add-course";
 import { TeeboxList } from "./templates/courses/course";
+import { CourseView } from "./templates/courses/course2";
 import { listCoursePage } from "./templates/courses/list-courses";
 import { Page } from "./templates/page";
 
@@ -48,7 +48,7 @@ export function registerCourseAdminHandlers(
     log("courseId", courseId);
     const course = await courseRepo.getCourse(courseId);
     const teeboxes = await teeboxRepo.getTeeboxesForCourse(courseId);
-    const result = Page(Panel(TeeboxList(course, teeboxes)));
+    const result = Page(CourseView({ course, teeboxes }));
     res.send(result);
   });
 
@@ -73,6 +73,6 @@ export function registerCourseAdminHandlers(
       LengthInYards
     );
 
-    res.redirect(`/admin/courses/${courseId}/teeboxes`);
+    res.redirect(`/admin/courses/${courseId}`);
   });
 }

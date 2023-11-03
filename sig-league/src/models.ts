@@ -1,3 +1,34 @@
+export interface TournamentResults {
+  resultList: TournamentResult[];
+  tourneyName: string;
+  courseName: string;
+  rounds: number;
+}
+
+export interface TournamentResult {
+  playerName: string;
+  rounds: TournamentRoundResult[];
+  netToPar: number;
+  grossToPar: number;
+  position: number;
+  complete: boolean;
+  handicap: string;
+  playedHoles: number;
+}
+
+export interface TournamentRoundResult {
+  round: number;
+  netOut: number;
+  netIn: number;
+  netToPar: number;
+  netTotal: number;
+  grossOut: number;
+  grossIn: number;
+  grossToPar: number;
+  grossTotal: number;
+  activeHole: number;
+}
+
 export interface Course {
   CourseID: number;
   CourseName: string;
@@ -49,22 +80,34 @@ export interface Hole {
 export interface Player {
   PlayerID: number;
   PlayerName: string;
-  HcpIndex: number;
+  Handicap: number;
+}
+
+export interface FullPlayer extends Player {
+  scorecards: FullScorecard[];
+}
+
+export interface Score {
+  in: number;
+  out: number;
+  total: number;
+  toPar: number;
 }
 
 export interface Scorecard {
   ScorecardID: number;
   PlayerID: number;
   RoundID: number;
-  SgtInGross: number;
-  OutGross: number;
-  SgtInNet: number;
-  OutNet: number;
-  TotalGross: number;
-  ToParGross: number;
-  SgtTotalNet: number;
-  SgtToParNet: number;
+  Gross: Score;
+  Net: Score;
+  SgtNet: Score;
   HandicapDiff: number;
+  Complete: boolean;
+  CreatedAt: string;
+}
+
+export interface FullScorecard extends Scorecard {
+  holes: HoleScore[];
 }
 
 export interface HoleScore {
@@ -72,5 +115,6 @@ export interface HoleScore {
   ScorecardID: number;
   HoleID: number;
   GrossScore: number;
+  NetScore: number;
   SgtNetScore: number;
 }

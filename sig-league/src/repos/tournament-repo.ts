@@ -55,33 +55,21 @@ export class TournamentRepo {
     t.TournamentID,
     t.TournamentName,
     t.SgtID AS TournamentSgtID,
-    tr.RoundNumber,
-    tr.RoundID,
-    tb.TeeBoxID,
-    c.CourseID,
-    c.CourseName,
-    tb.TeeBoxName,
-    tb.CourseRating,
-    tb.SlopeRating,
-    tb.LengthInYards
     FROM
         Tournaments t
-    JOIN
-        TournamentRounds tr ON t.TournamentID = tr.TournamentID
-    JOIN
-        TeeBoxes tb ON tr.TeeBoxID = tb.TeeBoxID
-    JOIN
-        Courses c ON tb.CourseID = c.CourseID
     WHERE
         t.TournamentID = $tournamentID;
   `;
     log("getTournament", tournamentID, "query: ", sql);
 
-    const result = await this.db.query<any[]>(sql, {
-      $tournamentID: tournamentID,
-    });
+    const result = await this.getTournament(tournamentID);
 
-    return mapDbResponseToFullTournament(result);
+    const rounds = await this.getFullTournamentRounds(tournamentID);
+
+    return {
+      ...result,
+      rounds,
+    };
   }
 
   async addRoundToTournament(
@@ -111,6 +99,123 @@ export class TournamentRepo {
     return await this.db.query<TournamentRound[]>(sql, {
       $tournamentID: tournamentID,
     });
+  }
+
+  async getFullTournamentRounds(
+    tournamentID: string
+  ): Promise<FullTournamentRound[]> {
+    const sql = `
+    SELECT
+    tr.RoundID,
+    tr.TournamentID,
+    tr.TeeBoxID,
+    tr.RoundNumber,
+    tb.TeeBoxName,
+    tb.CourseRating,
+    tb.SlopeRating,
+    tb.LengthInYards,
+    c.CourseID,
+    c.CourseName
+    FROM
+        TournamentRounds tr
+    JOIN
+        TeeBoxes tb ON tr.TeeBoxID = tb.TeeBoxID
+    JOIN
+        Courses c ON tb.CourseID = c.CourseID
+    WHERE
+        TournamentID = $tournamentID
+    ORDER BY
+        RoundNumber
+  `;
+
+    function mapDbResponseToFullRound(
+      dbResponse: any[]
+    ): FullTournamentRound[] {
+      const rounds: FullTournamentRound[] = [];
+      for (const row of dbResponse) {
+        const course: Course = {
+          CourseID: row.CourseID,
+          CourseName: row.CourseName,
+          SgtID: row.SgtID,
+        };
+
+        const teeBox: FullTeeBox = {
+          TeeBoxID: row.TeeBoxID,
+          CourseID: row.CourseID,
+          TeeBoxName: row.TeeBoxName,
+          CourseRating: row.CourseRating,
+          SlopeRating: row.SlopeRating,
+          LengthInYards: row.LengthInYards,
+          course: course,
+        };
+
+        const tournamentRound: FullTournamentRound = {
+          RoundID: row.RoundID,
+          TournamentID: row.TournamentID,
+          TeeBoxID: row.TeeBoxID,
+          RoundNumber: row.RoundNumber,
+          teebox: teeBox,
+        };
+
+        rounds.push(tournamentRound);
+      }
+      return rounds;
+    }
+
+    const result = await this.db.query<any[]>(sql, {
+      $tournamentID: tournamentID,
+    });
+
+    return mapDbResponseToFullRound(result);
+  }
+
+  async getTournamentBySgtId(sgtTournamentId: string) {
+    const sql = `
+    SELECT RoundID, TournamentID, TeeBoxID, RoundNumber
+    FROM TournamentRounds
+    WHERE SgtID = $sgtID
+    ORDER BY RoundNumber
+  `;
+    return await this.db.query<TournamentRound[]>(sql, {
+      $sgtID: sgtTournamentId,
+    });
+  }
+
+  async getFullTourneyByName(
+    tourneyName: string
+  ): Promise<FullTournament | null> {
+    const sql = `
+    SELECT
+    t.TournamentID,
+    t.TournamentName,
+    t.SgtID AS TournamentSgtID,
+    tr.RoundNumber,
+    tr.RoundID,
+    tb.TeeBoxID,
+    c.CourseID,
+    c.CourseName,
+    tb.TeeBoxName,
+    tb.CourseRating,
+    tb.SlopeRating,
+    tb.LengthInYards
+    FROM
+        Tournaments t
+    JOIN
+        TournamentRounds tr ON t.TournamentID = tr.TournamentID
+    JOIN
+        TeeBoxes tb ON tr.TeeBoxID = tb.TeeBoxID
+    JOIN
+        Courses c ON tb.CourseID = c.CourseID
+    WHERE
+        TournamentName = $tourneyName
+      LIMIT 1
+    `;
+    log("getTournament", tourneyName, "query: ", sql);
+    const result = await this.db.query<any[]>(sql, {
+      $tourneyName: tourneyName,
+    });
+
+    return mapDbResponseToFullTournament(result);
   }
 }
 

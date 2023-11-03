@@ -36,8 +36,8 @@ export function registerTournamentAdminHandlers(
 
   app.get("/admin/tournaments/:tournamentId", async (req, res) => {
     log("=============== GET TOURNAMENT ADMIN VIEW ===============");
-    const tournamentId = req.params.tournamentId;
     const courses = await courseRepo.listCourses();
+    const tournamentId = req.params.tournamentId;
     const tournament = await tournamentRepo.getFullTournament(tournamentId);
     const page = Page(TournamentView({ tournament, courses }));
     res.send(page);

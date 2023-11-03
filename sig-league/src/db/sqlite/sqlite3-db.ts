@@ -1,62 +1,6 @@
 import { Database } from "sqlite3";
-import { log } from "../log";
-import { Db } from "./db";
-
-export async function executeQuery<T>(
-  query: string,
-  db: Database,
-  params?: { [key: string]: any }
-): Promise<T> {
-  log("query", query);
-  const resultPromise = new Promise<T>((resolve, reject) => {
-    db.all(query, params, (err, rows) => {
-      if (err) {
-        reject(err);
-      } else {
-        log("rows", rows);
-        resolve(rows as T);
-      }
-    });
-  });
-  return resultPromise;
-}
-
-export async function get<T>(
-  query: string,
-  db: Database,
-  params?: { [key: string]: any }
-): Promise<T> {
-  log("query", query);
-  const resultPromise = new Promise<T>((resolve, reject) => {
-    db.get(query, params, (err, row) => {
-      if (err) {
-        reject(err);
-      } else {
-        log("row", row);
-        resolve(row as T);
-      }
-    });
-  });
-  return resultPromise;
-}
-
-// query: string, params object key value pairs, any values string keys
-export async function runWithParams(
-  query: string,
-  params: { [key: string]: any },
-  db: Database
-): Promise<void> {
-  const resultPromise = new Promise<void>((resolve, reject) => {
-    db.run(query, params, (err) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
-  });
-  return resultPromise;
-}
+import { Db } from "../db";
+import { executeQuery, get, runWithParams } from "./sqlite3-utils";
 
 export class SqliteDb implements Db {
   constructor(private db: Database) {}
@@ -92,7 +36,7 @@ export class SqliteDb implements Db {
     params: { [key: string]: any }
   ): Promise<void> {
     try {
-      const result = this.db.run(query, params);
+      await runWithParams(query, this.db, params);
     } catch (e: unknown) {
       if (e instanceof Error) {
         throw new Error(`Failed to insert record: ${e.message}`);
@@ -116,6 +60,46 @@ export class SqliteDb implements Db {
         throw new Error(
           `Failed to retrieve last record for table ${tableName}: ${e}`
         );
+      }
+    }
+  }
+
+  async run(query: string, params?: { [key: string]: any }): Promise<void> {
+    try {
+      await runWithParams(query, this.db, params);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Failed to run query ${query}: ${e.message}`);
+      } else {
+        throw new Error(`Failed to run query ${query}: ${e}`);
+      }
+    }
+  }
+
+  async tableExists(tableName: string): Promise<boolean> {
+    try {
+      const query = `SELECT name FROM sqlite_master WHERE type='table' AND name='${tableName}';`;
+      const result = await this.query<{ name: string }[]>(query);
+      return result.length > 0;
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(
+          `Failed to check if table ${tableName} exists: ${e.message}`
+        );
+      } else {
+        throw new Error(`Failed to check if table ${tableName} exists: ${e}`);
+      }
+    }
+  }
+
+  async updateRecord(query: string, params: { [key: string]: any }) {
+    try {
+      await runWithParams(query, this.db, params);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new Error(`Failed to update record: ${e.message}`);
+      } else {
+        throw new Error(`Failed to update record: ${e}`);
       }
     }
   }
