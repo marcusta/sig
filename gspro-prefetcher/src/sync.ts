@@ -11,15 +11,18 @@ import {
   CourseToDownload,
 } from "./types";
 
-/*const courseManifestUrls = [
-  "https://simulatorgolftour.com/course_manifest.json",
-  "https://tekbud.s3.us-east-2.amazonaws.com/tekbudcourselist1.json",
-  "https://www.dropbox.com/s/5er3u2xanxjnqnj/fantasyv2.json?dl=1",
-  "http://pakmanstudios.com/tier1-093006.json",
-  "http://pakmanstudios.com/tier2-070101.json",
-];*/
-
 const courseManifestUrls: CourseManifestList = [
+  {url: "https://simulatorgolftour.com/course_manifest.json",
+    folder: "sgt",
+    courseList: []
+  },
+  {url: "https://tekbud.s3.us-east-2.amazonaws.com/tekbudcourselist1.json", folder: "tekbud", courseList: []},
+  {url:"https://www.dropbox.com/s/5er3u2xanxjnqnj/fantasyv2.json?dl=1",folder:"runpuddrun", courseList:[]},
+  {url:"http://pakmanstudios.com/tier1-093006.json",folder: "pakman1", courseList: []},
+  {url:"http://pakmanstudios.com/tier2-070101.json",folder: "pakman2", courseList: []},
+];
+
+/*const courseManifestUrls: CourseManifestList = [
   {
     url: "http://127.0.0.1:3010/testManifest.json",
     folder: "testManifest",
@@ -30,7 +33,7 @@ const courseManifestUrls: CourseManifestList = [
     folder: "testManifest2",
     courseList: [],
   },
-];
+];*/
 
 // full update functionality is
 // 1. fetch course manifests
@@ -159,18 +162,4 @@ function scheduleCourseListUpdate() {
   setTimeout(() => {
     fetchCourseManifests(courseManifestUrls).then(writeCourseList);
   }, 100);
-}
-
-export function getCourseInfo() {
-  const courseList = readCourseList();
-  const courseCounts: { [key: string]: number } = {};
-  for (const manifest of courseList) {
-    courseCounts[manifest.url] = manifest.courseList.length;
-  }
-  return courseCounts;
-}
-
-function printCourseInfo() {
-  const courseCounts = getCourseInfo();
-  console.log(courseCounts);
 }

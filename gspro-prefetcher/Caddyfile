@@ -1,0 +1,13 @@
+{
+    http_port 8080
+}
+
+http://locahost:8080 {
+    root * E:\sig\gspro-prefetcher
+    file_server browse
+
+    log {
+        output stdout
+        format console
+    }
+}

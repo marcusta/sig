@@ -33,3 +33,12 @@ export function fileExistsInFolder(folderName: string, filename: string) {
   const filePath = path.join(folderName, filename);
   return fs.existsSync(filePath);
 }
+
+export function getCourseInfo() {
+  const courseList = readCourseList();
+  const courseCounts: { [key: string]: number } = {};
+  for (const manifest of courseList) {
+    courseCounts[manifest.url] = manifest.courseList.length;
+  }
+  return courseCounts;
+}

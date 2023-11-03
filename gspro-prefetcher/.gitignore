@@ -59,6 +59,12 @@ jspm_packages/
 
 web_modules/
 
+pakman1
+pakman2
+runpuddrun
+tekbud
+sgt
+
 # TypeScript cache
 
 \*.tsbuildinfo
