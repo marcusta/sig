@@ -1,4 +1,4 @@
-export function Page(body: string) {
+export function Page(body: string, title = "Sweden Indoor Golf") {
   const result = `
     <!DOCTYPE html>
     <html lang="en">
@@ -6,7 +6,7 @@ export function Page(body: string) {
           <meta charset="UTF-8">
           <meta http-equiv="X-UA-Compatible" content="IE=edge">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Create Course</title>
+          <title>${title}</title>
           <link href="http://localhost:4000/static/tailwind.css" rel="stylesheet">
           <script src="http://localhost:4000/static/htmx.js"></script>
       </head>

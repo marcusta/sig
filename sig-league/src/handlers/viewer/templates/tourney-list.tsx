@@ -23,8 +23,16 @@ function TourneyCard({ tourney }: { tourney: TournamentResults }) {
   return (
     <div class="bg-white">
       <div class="p-4">
-        <h2 class="font-bold text-xl mb-2">{tourney.tourneyName}</h2>
-        <p class="text-gray-700">{tourney.courseName}</p>
+        <h2 class="font-bold text-xl mb-2">
+          <a href={"/results/tourneys/" + tourney.tourneyID}>
+            {tourney.tourneyName}
+          </a>
+        </h2>
+        <p class="text-gray-700">
+          <a href={"/results/tourneys/" + tourney.tourneyID}>
+            {tourney.courseName}
+          </a>
+        </p>
         <div class="mt-4">
           <h3 class="text-lg font-semibold">Current Top Scores</h3>
 

@@ -2,3 +2,4 @@
 ./data/scores.json
 ./data/sig-scores.json
 sig-scores.json
+db.sqlite3

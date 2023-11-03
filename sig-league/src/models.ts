@@ -1,6 +1,7 @@
 export interface TournamentResults {
   resultList: TournamentResult[];
   tourneyName: string;
+  tourneyID: string;
   courseName: string;
   rounds: number;
 }

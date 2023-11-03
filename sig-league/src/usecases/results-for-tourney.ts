@@ -43,6 +43,7 @@ export class ResultsForTourney {
         rounds: 0,
         resultList: [],
         courseName: "",
+        tourneyID: "",
       };
     }
     const tourneyName = tourney.TournamentName;
@@ -50,6 +51,7 @@ export class ResultsForTourney {
     if (tourneyRoundCount === 0) {
       return {
         tourneyName: tourneyName,
+        tourneyID: tourney.TournamentID.toString(),
         rounds: 0,
         resultList: [],
         courseName:
@@ -111,6 +113,7 @@ export class ResultsForTourney {
 
     return {
       tourneyName: tourneyName,
+      tourneyID: tourney.TournamentID.toString(),
       rounds: tourneyRoundCount,
       resultList,
       courseName: tourney?.rounds[0]?.teebox?.course?.CourseName ?? "",
