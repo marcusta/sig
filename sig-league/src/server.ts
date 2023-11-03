@@ -11,6 +11,7 @@ import { SgtScorecardsRepo } from "./repos/sgt-scorecards-repo";
 import { TeeboxRepo } from "./repos/teebox-repo";
 import { TournamentRepo } from "./repos/tournament-repo";
 import { FileImporter } from "./sgt/file-importer";
+import { startSgtSync } from "./sgt/sgt-downloader";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -35,7 +36,7 @@ createDatabase(sqliteDb);
 registerCourseAdminHandlers(app, courseRepo, teeboxRepo);
 registerTournamentAdminHandlers(app, courseRepo, teeboxRepo, tournamentRepo);
 registerResultsHandlers(app, sgtScorecardsRepo, tournamentRepo);
-// startSgtSync(sgtURL, filepathForSyncFile, 1, fileImporter);
+startSgtSync(sgtURL, filepathForSyncFile, 1, fileImporter);
 
 app.listen(PORT, () => {
   // dropDatabase();
