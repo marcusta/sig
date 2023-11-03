@@ -1,9 +1,11 @@
+import { courseManifestPublishPath } from "./configuration";
 import { downloadCourses, fetchCourseManifests } from "./downloader";
 import {
   checkIfDownloadedFileExists,
   readCourseList,
   writeCourseList,
 } from "./file-storage";
+import { publishLocalCourseManifest } from "./publish-manifest";
 import {
   Course,
   CourseManifest,
@@ -51,6 +53,7 @@ const courseManifestUrls: CourseManifestList = [
 
 export async function doFullUpdateCycle() {
   const newCourseManifestList = await fetchCourseManifests(courseManifestUrls);
+
   const oldCourseManifestList = readCourseList();
   console.log("read old course manifest...");
   // convert oldCourseManifestList to obj keyed on folder name
@@ -68,7 +71,13 @@ export async function doFullUpdateCycle() {
   });
 
   console.log("courses to download count", coursesToDownload.length);
-  downloadCourses(coursesToDownload);
+  downloadCourses(coursesToDownload, (course, status) => {
+    console.log(`Download of ${course.course.Name} was ${status}`);
+    // After every successful download, publish the merged manifest
+    if (status === "successful") {
+      publishLocalCourseManifest();
+    }
+  });
   writeCourseList(newCourseManifestList);
 }
 

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "export IS_LOCAL=true;node ./server.js",
+    "dev": "export IS_LOCAL=true;nodemon ./server.js",
     "convert": "export IS_LOCAL=true;node ./src/result_parser.js"
   },
   "keywords": [],

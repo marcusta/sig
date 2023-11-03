@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+// https://simulatorgolftour.com/sig_scores.json
+
 const local = process.env.IS_LOCAL === 'true';
 console.log('is local: ', local);
 const importFilePath = local ? './data/import.json' : '/data/import.json';

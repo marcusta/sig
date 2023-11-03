@@ -23,7 +23,10 @@ export async function fetchCourseManifests(
   return courseManifests;
 }
 
-export async function downloadCourses(coursesToDownload: CourseToDownload[]) {
+export async function downloadCourses(
+  coursesToDownload: CourseToDownload[],
+  onCourseDownloaded: (course: CourseToDownload, status: string) => void
+) {
   for (const courseToDownload of coursesToDownload) {
     console.log(
       "about to download course",
@@ -31,8 +34,20 @@ export async function downloadCourses(coursesToDownload: CourseToDownload[]) {
       "to folder",
       courseToDownload.targetFolder
     );
-    await downloadCourse(courseToDownload);
+    let downloadStatus = "failed";
+    try {
+      await downloadCourse(courseToDownload);
+      downloadStatus = "successful";
+    } catch (error) {
+      console.error("Error downloading", courseToDownload.course.Name, error);
+    }
+
     console.log("downloaded course", courseToDownload.course.Name);
+
+    // Call the callback if provided
+    if (onCourseDownloaded) {
+      onCourseDownloaded(courseToDownload, downloadStatus);
+    }
   }
 }
 

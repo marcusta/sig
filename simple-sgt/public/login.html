@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login UI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+
+    <div class="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-md w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+        <!-- Email Input -->
+        <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-600 mb-2">Email address</label>
+            <input type="email" id="email" name="email" class="p-2 w-full border rounded-md" placeholder="Enter your email">
+        </div>
+
+        <!-- Password Input -->
+        <div class="mb-4">
+            <label for="password" class="block text-sm font-medium text-gray-600 mb-2">Password</label>
+            <input type="password" id="password" name="password" class="p-2 w-full border rounded-md" placeholder="Enter your password">
+        </div>
+
+        <!-- Login Button -->
+        <div class="mb-4">
+            <button class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
+                Log in
+            </button>
+        </div>
+
+        <!-- Remember me and Sign up -->
+        <div class="flex justify-between items-center">
+            <div class="flex items-center">
+                <input type="checkbox" id="remember" name="remember" class="mr-2">
+                <label for="remember" class="text-sm text-gray-600">Remember me</label>
+            </div>
+            <div>
+                <a href="#" class="text-blue-500 text-sm hover:underline">Don't have an account? Sign up</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
