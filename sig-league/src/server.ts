@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/static", express.static("static"));
 
 const sgtURL = "https://simulatorgolftour.com/club-api/3/club-scores";
-const filepathForSyncFile = "./data/scores.json";
+const filepathForSyncFile = "./data/sig-scores.json";
 
 const sqliteDb = new SqliteDb(connectToDatabase());
 const courseRepo = new CourseRepo(sqliteDb);
